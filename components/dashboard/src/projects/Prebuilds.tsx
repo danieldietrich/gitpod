@@ -90,7 +90,7 @@ export default function () {
             entries.push({
                 title: "Cancel Prebuild",
                 customFontStyle: 'text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-300',
-                onClick: () => window.alert('cancellation not yet supported')
+                onClick: () => cancelPrebuild(p.info.id),
             })
         }
         return entries;
@@ -130,9 +130,17 @@ export default function () {
     }
 
     const triggerPrebuild = (branchName: string | null) => {
-        if (project) {
-            getGitpodService().server.triggerPrebuild(project.id, branchName);
+        if (!project) {
+            return;
         }
+        getGitpodService().server.triggerPrebuild(project.id, branchName);
+    }
+
+    const cancelPrebuild = (prebuildId: string) => {
+        if (!project) {
+            return;
+        }
+        getGitpodService().server.cancelPrebuild(project.id, prebuildId);
     }
 
     const formatDate = (date: string | undefined) => {
