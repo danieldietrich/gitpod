@@ -35,6 +35,10 @@ function getConfig(config: RateLimiterConfig): RateLimiterConfig {
             points: 60000, // 1,000 calls per user per second
             durationsSec: 60,
         },
+        highDBimpact: {
+            points: 10, // 5 calls per user per minute
+            durationsSec: 120
+        }
     }
     const defaultFunctions: FunctionsConfig = {
         "getLoggedInUser": { group: "default", points: 1 },
@@ -159,14 +163,14 @@ function getConfig(config: RateLimiterConfig): RateLimiterConfig {
         "subscriptionCancelDowngrade":  { group: "default", points: 1 },
         "subscriptionDowngradeTo":  { group: "default", points: 1 },
         "subscriptionUpgradeTo":  { group: "default", points: 1 },
-        "tsAddSlots":  { group: "default", points: 1 },
-        "tsAssignSlot":  { group: "default", points: 1 },
-        "tsDeactivateSlot":  { group: "default", points: 1 },
-        "tsGet":  { group: "default", points: 1 },
-        "tsGetSlots":  { group: "default", points: 1 },
-        "tsGetUnassignedSlot":  { group: "default", points: 1 },
-        "tsReactivateSlot":  { group: "default", points: 1 },
-        "tsReassignSlot":  { group: "default", points: 1 },
+        "tsAddSlots":  { group: "highDBimpact", points: 1 },
+        "tsAssignSlot":  { group: "highDBimpact", points: 1 },
+        "tsDeactivateSlot":  { group: "highDBimpact", points: 1 },
+        "tsGet":  { group: "highDBimpact", points: 1 },
+        "tsGetSlots":  { group: "highDBimpact", points: 1 },
+        "tsGetUnassignedSlot":  { group: "highDBimpact", points: 1 },
+        "tsReactivateSlot":  { group: "highDBimpact", points: 1 },
+        "tsReassignSlot":  { group: "highDBimpact", points: 1 },
         "trackEvent":  { group: "default", points: 1 },
         "trackLocation": { group: "default", points: 1}
     };
