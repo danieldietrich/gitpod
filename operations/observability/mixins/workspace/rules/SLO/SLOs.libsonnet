@@ -4,3 +4,4 @@
  */
 
 (import './workspacefailure/rules.libsonnet')
++ (import './regularNotActive/rules.libsonnet')
